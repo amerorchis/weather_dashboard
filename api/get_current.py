@@ -1,6 +1,6 @@
-from convert import *
-from descriptors import *
-from query import query
+from api.convert import *
+from api.descriptors import *
+from api.query import query
 import datetime
 
 def get_current() -> tuple:

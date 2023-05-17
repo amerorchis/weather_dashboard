@@ -1,4 +1,6 @@
 api/__pycache__
 .env
-venv
+.venv
 other
+__init__.py
+__pycache__

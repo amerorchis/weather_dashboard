@@ -1,6 +1,6 @@
 from flask import Flask, render_template
-from get_current import *
-from graph import *
+from api.get_current import *
+from api.graph import *
 from bokeh.themes import Theme
 from bokeh.embed import components
 from bokeh.resources import CDN
@@ -25,5 +25,3 @@ def index():
 @app.route('/static/css/style.css')
 def css():
     return app.send_static_file('css/style.css')
-
-app.run(port=8090)

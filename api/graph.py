@@ -3,9 +3,9 @@ from bokeh.models import DatetimeTickFormatter, DataRange1d
 from bokeh.layouts import layout, row
 from bokeh.themes import Theme
 import pandas as pd
-from query import query
+from api.query import query
 from bokeh.io import curdoc
-from convert import *
+from api.convert import *
 from bokeh.models import Label, Circle, HoverTool, ColumnDataSource
 
 def graph_daily():
