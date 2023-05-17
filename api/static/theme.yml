@@ -1,0 +1,17 @@
+attrs:
+    figure:
+        background_fill_color: '#2e353a'
+        border_fill_color: '#2e353a'
+        outline_line_color: '#e1e8ed'
+    Title:
+        text_color: "#e1e8ed"
+        text_font_size: 26px
+        text_font_style: 'normal'
+    Axis:
+        axis_label_text_color: "#e1e8ed"
+        major_label_text_color:  "#e1e8ed"
+        axis_line_color: "#e1e8ed"
+        major_tick_line_color: "#e1e8ed"
+        minor_tick_line_color: "#e1e8ed"
+        axis_label_text_font_size: 16.5px
+        axis_label_text_font_style: 'normal'

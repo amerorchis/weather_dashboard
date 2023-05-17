@@ -1,0 +1,16 @@
+certifi==2023.5.7
+flightsql-dbapi==0.2.1
+influxdb-client==1.36.1
+numpy==1.24.3
+paho-mqtt==1.6.1
+pandas==2.0.1
+protobuf==4.23.0
+pyarrow==12.0.0
+python-dateutil==2.8.2
+pytz==2023.3
+reactivex==4.0.4
+six==1.16.0
+SQLAlchemy==1.4.48
+typing_extensions==4.5.0
+tzdata==2023.3
+urllib3==2.0.2
