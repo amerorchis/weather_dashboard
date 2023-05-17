@@ -47,7 +47,9 @@ def graph_daily():
 	# Create AQI graph
 	q = figure(title=f'AQI Over Last 24 Hours', x_axis_label='Time', y_axis_label=f'AQI', sizing_mode='stretch_width', max_width=820, height=350)
 	q.x_range = DataRange1d(start=df['local_time'].min() - pd.Timedelta(minutes=15), end=df['local_time'].max() + pd.Timedelta(minutes=15))
-	q.y_range = DataRange1d(start=int(float(df['AQI'].min()))//1-5, end=int(float(df['AQI'].max()))//1+5)
+	max_aqi = int(float(df['AQI'].max()))//1
+	margin = max_aqi*0.2 if max_aqi*0.2 > 5 else 5
+	q.y_range = DataRange1d(start=0, end=max_aqi+margin)
 	q.xaxis.formatter = DatetimeTickFormatter(seconds = '%-I:%M:%S', minsec = '%-I:%M:%S', minutes = '%-I:%M:%S', hours='%b %d, %-I:%M%p')
 
 	# add a line to the figure
@@ -61,7 +63,7 @@ def graph_daily():
 	dot = Circle(x=latest_time, y=latest_aqi, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
 	dot_renderer = q.add_glyph(circle_source, dot)
 
-	label = Label(x=latest_time, x_offset=-43, y=latest_aqi, y_offset=20, background_fill_color='#e1e8ed', text=f'Now: {(round(latest_aqi))}', 
+	label = Label(x=latest_time, x_offset=-50, y=latest_aqi, y_offset=20, background_fill_color='#e1e8ed', text=f'Now: {(round(latest_aqi))}', 
 	       text_color="black", text_font_size="12px", text_baseline="middle", text_align="left", border_line_width = 3, border_line_color='#e1e8ed')
 	q.add_layout(label)
 	
