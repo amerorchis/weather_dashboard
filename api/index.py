@@ -31,9 +31,56 @@ def index():
 
         return render_template('dashboard.html', current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
                             aqi=aqi, aqi_desc=aqi_desc, pull_time=_time, low_temp=low_temp, high_temp=high_temp, script1=script1, div1=div1,
-                            script2=script2, div2=div2, bokeh_resources=CDN.render())
+                            script2=script2, div2=div2, bokeh_resources=CDN.render(), daily='[Daily]')
     except Exception as e:
         return str(e)
+
+@app.route('/weekly')
+def weekly():
+    try:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+            # Submit the functions to the executor
+            current_future = executor.submit(get_current)
+            dailies_future = executor.submit(get_dailies)
+            graph_future = executor.submit(graph_weekly)
+
+            # Retrieve the results from each future
+            current_temp, humidity, hum_desc, pressure, press_desc, aqi, aqi_desc, _time = current_future.result()
+            low_temp, high_temp = dailies_future.result()
+            p1, p2 = graph_future.result()
+
+        script1, div1 = components(p1, theme=theme)
+        script2, div2 = components(p2, theme=theme)
+
+        return render_template('dashboard.html', current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
+                            aqi=aqi, aqi_desc=aqi_desc, pull_time=_time, low_temp=low_temp, high_temp=high_temp, script1=script1, div1=div1,
+                            script2=script2, div2=div2, bokeh_resources=CDN.render(), weekly='[Weekly]')
+    except Exception as e:
+        return str(e)
+    
+@app.route('/monthly')
+def monthly():
+    try:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+            # Submit the functions to the executor
+            current_future = executor.submit(get_current)
+            dailies_future = executor.submit(get_dailies)
+            graph_future = executor.submit(graph_monthly)
+
+            # Retrieve the results from each future
+            current_temp, humidity, hum_desc, pressure, press_desc, aqi, aqi_desc, _time = current_future.result()
+            low_temp, high_temp = dailies_future.result()
+            p1, p2 = graph_future.result()
+
+        script1, div1 = components(p1, theme=theme)
+        script2, div2 = components(p2, theme=theme)
+
+        return render_template('dashboard.html', current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
+                            aqi=aqi, aqi_desc=aqi_desc, pull_time=_time, low_temp=low_temp, high_temp=high_temp, script1=script1, div1=div1,
+                            script2=script2, div2=div2, bokeh_resources=CDN.render(), monthly="[Monthly]")
+    except Exception as e:
+        return str(e)
+
 
 @app.route('/static/css/style.css')
 def css():
