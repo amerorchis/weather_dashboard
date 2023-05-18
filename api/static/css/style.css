@@ -117,7 +117,7 @@
   }
 
 h1 {
-    margin-left: 395px;
+    align-items: center;
     margin-top: 25px;
     color: #e1e8ed;
   }
@@ -126,11 +126,36 @@ body {
 }
 p {
   margin-top: 4px;
-  margin-left: 400px;
   color: #e1e8ed;
 }
 div.chart {
-  margin-left: 395px;
-  margin-top: 40px;
+  padding-left: -10px;
   margin-bottom: 25px;
+}
+
+/* Style for the selector button */
+.selector {
+  display: inline-block;
+  position: relative;
+  border-radius: 30px / 50px;
+  border: 2px solid black;
+  padding: 5px;
+  margin: 10px;
+  font-size: 20px;
+  text-align: center;
+  background-color: white;
+  user-select: none;
+}
+
+/* Style for the selector links */
+.selector-link {
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.select-button {
+  margin-top: 25px;
+  margin-left: 300px;
 }

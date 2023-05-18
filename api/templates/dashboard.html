@@ -10,58 +10,68 @@
     <link rel="stylesheet" href="{{ url_for('css') }}">
   </head>
   <body>
-    <h1>West Glacier Dashboard</h1>
-    <p>Last Data Reading: {{ pull_time }}</p>
-    <div id="root">
+    <div class="container pt-5">
+        <h1>West Glacier Dashboard</h1>
+        <p>Last Data Reading: {{ pull_time }}</p>
+        <div id="root">
+            <div>
+            <div class="row align-items-stretch">
+                <div class="c-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Current Temp</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{ current_temp }}°F</span>
+                </div>
+                </div>
+                <div class="c-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Today's Low</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{ low_temp }}°F</span>
+                </div>
+                </div>
+                <div class="c-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Today's High</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{ high_temp }}°F</span>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div id="root">
+            <div">
+            <div class="row align-items-stretch">
+                <div class="d-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight d-dashboardInfo__title">Humidity</h4><span class="hind-font caption-12 d-dashboardInfo__count">{{ humidity }}%</span><span
+                    class="hind-font caption-12 d-dashboardInfo__subInfo">{{ hum_desc }}</span>
+                </div>
+                </div>
+                <div class="d-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight d-dashboardInfo__title">Barometric Pressure</h4><span class="hind-font caption-12 d-dashboardInfo__count">{{ pressure }} hG</span><span
+                    class="hind-font caption-12 d-dashboardInfo__subInfo">{{ press_desc }}</span>
+                </div>
+                </div>
+                <div class="d-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight d-dashboardInfo__title">AQI</h4><span class="hind-font caption-12 d-dashboardInfo__count">{{ aqi }}</span><span
+                    class="hind-font caption-12 d-dashboardInfo__subInfo">{{ aqi_desc }}</span>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
         <div class="container pt-5">
-        <div class="row align-items-stretch">
-            <div class="c-dashboardInfo col-lg-3 col-md-6">
-            <div class="wrap">
-                <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Current Temp</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{ current_temp }}°F</span>
+            <div class="selector select-button">
+                <a href="/daily" class="selector-link">{{ daily|default('Daily') }}</a>
+                <a href="/weekly" class="selector-link">{{ weekly|default('Weekly') }}</a>
+                <a href="/monthly" class="selector-link">{{ monthly|default('Monthly') }}</a>
             </div>
+            <div>
+                {{ div1|safe }}
             </div>
-            <div class="c-dashboardInfo col-lg-3 col-md-6">
-            <div class="wrap">
-                <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Today's Low</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{ low_temp }}°F</span>
-            </div>
-            </div>
-            <div class="c-dashboardInfo col-lg-3 col-md-6">
-            <div class="wrap">
-                <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Today's High</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{ high_temp }}°F</span>
-            </div>
+            <br>
+            <div>
+                {{ div2|safe }}
             </div>
         </div>
-        </div>
-    </div>
-    <div id="root">
-        <div class="container pt-5">
-        <div class="row align-items-stretch">
-            <div class="d-dashboardInfo col-lg-3 col-md-6">
-            <div class="wrap">
-                <h4 class="heading heading5 hind-font medium-font-weight d-dashboardInfo__title">Humidity</h4><span class="hind-font caption-12 d-dashboardInfo__count">{{ humidity }}%</span><span
-                class="hind-font caption-12 d-dashboardInfo__subInfo">{{ hum_desc }}</span>
-            </div>
-            </div>
-            <div class="d-dashboardInfo col-lg-3 col-md-6">
-            <div class="wrap">
-                <h4 class="heading heading5 hind-font medium-font-weight d-dashboardInfo__title">Barometric Pressure</h4><span class="hind-font caption-12 d-dashboardInfo__count">{{ pressure }} hG</span><span
-                class="hind-font caption-12 d-dashboardInfo__subInfo">{{ press_desc }}</span>
-            </div>
-            </div>
-            <div class="d-dashboardInfo col-lg-3 col-md-6">
-            <div class="wrap">
-                <h4 class="heading heading5 hind-font medium-font-weight d-dashboardInfo__title">AQI</h4><span class="hind-font caption-12 d-dashboardInfo__count">{{ aqi }}</span><span
-                class="hind-font caption-12 d-dashboardInfo__subInfo">{{ aqi_desc }}</span>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    <div class="chart">
-        {{ div1|safe }}
-    </div>
-    <div class="chart">
-        {{ div2|safe }}
     </div>
   </body>
 </html>
