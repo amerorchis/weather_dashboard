@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from api.get_current import *
 from api.graph import *
 from bokeh.themes import Theme
@@ -15,6 +15,9 @@ theme = Theme(filename="api/static/theme.yml")
 @app.route('/daily')
 def index():
     try:
+        user_agent = request.headers.get
+        template_name = 'dashboard_mobile.html' if 'Mobile' in user_agent else 'dashboard.html'
+        
         with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
             # Submit the functions to the executor
             current_future = executor.submit(get_current)
@@ -29,7 +32,7 @@ def index():
         script1, div1 = components(p1, theme=theme)
         script2, div2 = components(p2, theme=theme)
 
-        return render_template('dashboard.html', current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
+        return render_template(template_name, current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
                             aqi=aqi, aqi_desc=aqi_desc, pull_time=_time, low_temp=low_temp, high_temp=high_temp, script1=script1, div1=div1,
                             script2=script2, div2=div2, bokeh_resources=CDN.render(), daily='[Daily]')
     except Exception as e:
@@ -38,6 +41,9 @@ def index():
 @app.route('/weekly')
 def weekly():
     try:
+        user_agent = request.headers.get
+        template_name = 'dashboard_mobile.html' if 'Mobile' in user_agent else 'dashboard.html'
+        
         with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
             # Submit the functions to the executor
             current_future = executor.submit(get_current)
@@ -52,7 +58,7 @@ def weekly():
         script1, div1 = components(p1, theme=theme)
         script2, div2 = components(p2, theme=theme)
 
-        return render_template('dashboard.html', current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
+        return render_template(template_name, current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
                             aqi=aqi, aqi_desc=aqi_desc, pull_time=_time, low_temp=low_temp, high_temp=high_temp, script1=script1, div1=div1,
                             script2=script2, div2=div2, bokeh_resources=CDN.render(), weekly='[Weekly]')
     except Exception as e:
@@ -61,6 +67,9 @@ def weekly():
 @app.route('/monthly')
 def monthly():
     try:
+        user_agent = request.headers.get
+        template_name = 'dashboard_mobile.html' if 'Mobile' in user_agent else 'dashboard.html'
+        
         with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
             # Submit the functions to the executor
             current_future = executor.submit(get_current)
@@ -75,7 +84,7 @@ def monthly():
         script1, div1 = components(p1, theme=theme)
         script2, div2 = components(p2, theme=theme)
 
-        return render_template('dashboard.html', current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
+        return render_template(template_name, current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
                             aqi=aqi, aqi_desc=aqi_desc, pull_time=_time, low_temp=low_temp, high_temp=high_temp, script1=script1, div1=div1,
                             script2=script2, div2=div2, bokeh_resources=CDN.render(), monthly="[Monthly]")
     except Exception as e:
