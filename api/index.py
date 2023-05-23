@@ -15,8 +15,7 @@ theme = Theme(filename="api/static/theme.yml")
 @app.route('/daily')
 def index():
     try:
-        user_agent = request.headers.get
-        template_name = 'dashboard_mobile.html' if 'Mobile' in user_agent else 'dashboard.html'
+        template_name = 'dashboard_mobile.html' if 'mobile' in request.headers.get('User-Agent').lower() else 'dashboard.html'
         
         with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
             # Submit the functions to the executor
@@ -41,8 +40,7 @@ def index():
 @app.route('/weekly')
 def weekly():
     try:
-        user_agent = request.headers.get
-        template_name = 'dashboard_mobile.html' if 'Mobile' in user_agent else 'dashboard.html'
+        template_name = 'dashboard_mobile.html' if 'mobile' in request.headers.get('User-Agent').lower() else 'dashboard.html'
         
         with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
             # Submit the functions to the executor
@@ -67,8 +65,7 @@ def weekly():
 @app.route('/monthly')
 def monthly():
     try:
-        user_agent = request.headers.get
-        template_name = 'dashboard_mobile.html' if 'Mobile' in user_agent else 'dashboard.html'
+        template_name = 'dashboard_mobile.html' if 'mobile' in request.headers.get('User-Agent').lower() else 'dashboard.html'
         
         with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
             # Submit the functions to the executor
