@@ -120,14 +120,29 @@ h1 {
     align-items: center;
     margin-top: 25px;
     color: #e1e8ed;
-  }
+}
+
+h2 {
+    align-items: center;
+    margin-top: 10px;
+    color: #e1e8ed;
+    font-size: 26px;
+}
+
 body {
     background-color: #2e353a;
 }
-p {
+
+p, ul {
   margin-top: 4px;
   color: #e1e8ed;
 }
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
 div.chart {
   padding-left: -10px;
   margin-bottom: 25px;
@@ -157,10 +172,10 @@ div.chart {
 
 .select-button {
   margin-top: 25px;
-  margin-left: 300px;
+  margin-left: 275px;
 }
 
 .mobile-select-button {
   margin-top: 25px;
-  margin-left: 220px;
+  margin-left: 210px;
 }

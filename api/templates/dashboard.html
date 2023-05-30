@@ -72,6 +72,20 @@
                 {{ div2|safe }}
             </div>
         </div>
+        <div class="container pt-5">
+            <h2>Planes Overhead</h2>
+            <ul>
+                {% for i in planes %}
+                    <li>
+                        {% if i.url %}
+                            &nbsp;✈️&nbsp;&nbsp;<a href="{{ i.url }}">{{ i.flight }}</a>
+                        {% else %}
+                            &nbsp;✈️&nbsp;&nbsp;{{ i.flight }}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
   </body>
 </html>
