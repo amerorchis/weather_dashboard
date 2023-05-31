@@ -1,0 +1,1 @@
+This library takes data from an SQL database and creates a dashboard for the weather at my house.

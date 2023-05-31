@@ -75,17 +75,24 @@
         <div class="container pt-5">
             <h2>Planes Overhead</h2>
             <ul>
-                {% for i in planes %}
-                    <li>
-                        {% if i.url %}
-                            &nbsp;✈️&nbsp;&nbsp;<a href="{{ i.url }}">{{ i.flight }}</a>
-                        {% else %}
-                            &nbsp;✈️&nbsp;&nbsp;{{ i.flight }}
-                        {% endif %}
-                    </li>
-                {% endfor %}
+                {% if planes %}
+                    {% for i in planes %}
+                        <li>
+                            {% if i.url %}
+                                &nbsp;✈️&nbsp;&nbsp;<a href="{{ i.url }}">{{ i.flight }}</a>
+                            {% else %}
+                                &nbsp;✈️&nbsp;&nbsp;{{ i.flight }}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                <p>No planes overhead at the moment.</p>
+                {% endif %}
             </ul>
         </div>
     </div>
   </body>
+  <footer>
+    <p>Site by Andrew Smith<Br>Source code at <a href="https://github.com/amerorchis/weather_dashboard">https://github.com/amerorchis/weather_dashboard</a>.</p>
+  </footer>
 </html>
