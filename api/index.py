@@ -18,7 +18,7 @@ def index():
     try:
         template_name = 'dashboard_mobile.html' if 'mobile' in request.headers.get('User-Agent').lower() else 'dashboard.html'
         
-        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
             # Submit the functions to the executor
             current_future = executor.submit(get_current)
             dailies_future = executor.submit(get_dailies)
