@@ -98,3 +98,7 @@ def monthly():
 @app.route('/static/css/style.css')
 def css():
     return app.send_static_file('css/style.css')
+
+@app.route('/favicon.ico')
+def favicon():
+    return app.send_static_file('favicon.ico')
