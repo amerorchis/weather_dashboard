@@ -79,7 +79,7 @@
                     {% for i in planes %}
                         <li>
                             {% if i.url %}
-                                &nbsp;✈️&nbsp;&nbsp;<a href="{{ i.url }}">{{ i.flight }}</a>
+                                &nbsp;✈️&nbsp;&nbsp;<a href="{{ i.url }}" style="color: #F2F3D9; text-decoration: underline;">{{ i.flight }}</a>&nbsp;{{ i.route }}
                             {% else %}
                                 &nbsp;✈️&nbsp;&nbsp;{{ i.flight }}
                             {% endif %}
@@ -93,6 +93,6 @@
     </div>
   </body>
   <footer>
-    <p>Site by Andrew Smith<Br>Source code at <a href="https://github.com/amerorchis/weather_dashboard">https://github.com/amerorchis/weather_dashboard</a>.</p>
+    <p>Site by Andrew Smith<Br><a href="https://github.com/amerorchis/weather_dashboard" style="color: #F2F3D9; text-decoration: underline;">Source Code</a></p>
   </footer>
 </html>

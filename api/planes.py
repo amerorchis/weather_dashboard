@@ -31,12 +31,6 @@ def flights_html():
 	flight_list = []
 	for index, row in flights.iterrows():
 		flight, airline, origin, dest, callsign = row['Flight'], row['Airline'], row['From'], row['To'], row['Callsign']
-
-		if origin:
-			origin = f'from {origin}'
-
-		if not origin and not dest:
-			origin = '(no additional information available)'
 			
 		if airline:
 			flight_str = f'{airline} flight {flight}'
@@ -44,15 +38,15 @@ def flights_html():
 			flight_str = f'Flight {flight}'
 
 		if origin:
-			flight_str += f' {origin}'
+			route = f'from {origin}'
 		
 		if dest:
-			flight_str += f' to {dest}'
+			route += f' to {dest}'
 		
 		if callsign:
 			url = f'https://flightaware.com/live/flight/{callsign}'
-			flight_list.append({'flight': flight_str, 'url': url})
+			flight_list.append({'flight': flight_str, 'url': url, 'route':route})
 		else:
-			flight_list.append({'flight': flight_str})
+			flight_list.append({'flight': flight_str + ' (no additional information available)'})
 
 	return flight_list
