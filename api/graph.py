@@ -21,9 +21,9 @@ def graph_daily():
 	# Create Temperature Graph
 	p = figure(title=f'Temperature Over Last 24 Hours', x_axis_label='Time', y_axis_label=f'Temperature (°F)', sizing_mode='stretch_width', max_width=820, height=350)
 	min_temp, max_temp = float(df['Temp_F'].min()), float(df['Temp_F'].max())
-	margin = max([1, max_temp*0.03])
+	margin = max([1, max_temp*0.035])
 	p.x_range = DataRange1d(start=df['local_time'].min() - pd.Timedelta(minutes=15), end=df['local_time'].max() + pd.Timedelta(minutes=15))
-	p.y_range = DataRange1d(start=round(min_temp - margin), end=round(max_temp + margin))
+	p.y_range = DataRange1d(start=(min_temp // 1) - 1, end=math.ceil(max_temp + margin))
 	p.xaxis.formatter = DatetimeTickFormatter(seconds = '%-I:%M:%S', minsec = '%-I:%M:%S', minutes = '%-I:%M:%S', hours='%b %-d, %-I:%M%p')
 
 	# add a line to the figure
@@ -89,9 +89,9 @@ def graph_weekly():
 	# Create Temperature Graph
 	p = figure(title=f'Temperature Over Last 7 Days', x_axis_label='Time', y_axis_label=f'Temperature (°F)', sizing_mode='stretch_width', max_width=820, height=350)
 	min_temp, max_temp = float(df['Temp_F'].min()), float(df['Temp_F'].max())
-	margin = max([1, max_temp*0.03])
+	margin = max([1, max_temp*0.035])
 	p.x_range = DataRange1d(start=datetime.now() - pd.Timedelta(days=7, hours=8), end=datetime.now() + pd.Timedelta(hours=8))
-	p.y_range = DataRange1d(start=round(min_temp - margin), end=round(max_temp + margin))
+	p.y_range = DataRange1d(start=(min_temp // 1) - 1, end=math.ceil(max_temp + margin))
 	p.xaxis.formatter = DatetimeTickFormatter(days='%b %-d, %-I:%M%p', hours='%b %-d, %-I:%M%p')
 
 	# add a line to the figure
