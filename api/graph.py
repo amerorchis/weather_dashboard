@@ -21,7 +21,7 @@ def graph_daily():
 	# Create Temperature Graph
 	p = figure(title=f'Temperature Over Last 24 Hours', x_axis_label='Time', y_axis_label=f'Temperature (°F)', sizing_mode='stretch_width', max_width=820, height=350)
 	min_temp, max_temp = float(df['Temp_F'].min()), float(df['Temp_F'].max())
-	margin = max([1, max_temp*0.02])
+	margin = max([1, max_temp*0.03])
 	p.x_range = DataRange1d(start=df['local_time'].min() - pd.Timedelta(minutes=15), end=df['local_time'].max() + pd.Timedelta(minutes=15))
 	p.y_range = DataRange1d(start=round(min_temp - margin), end=round(max_temp + margin))
 	p.xaxis.formatter = DatetimeTickFormatter(seconds = '%-I:%M:%S', minsec = '%-I:%M:%S', minutes = '%-I:%M:%S', hours='%b %-d, %-I:%M%p')
