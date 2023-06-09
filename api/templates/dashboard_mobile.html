@@ -95,6 +95,9 @@
                 {% else %}
                 <p>No planes overhead at the moment.</p>
                 {% endif %}
+                {% if private_flights %}
+                <p class="private_flights">*No additional information available, likely a private flight</p>
+                {% endif %}
             </ul>
         </div>
     </div>

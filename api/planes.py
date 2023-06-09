@@ -29,6 +29,8 @@ def flights_query(range='30 minutes'):
 def flights_html():
 	flights = flights_query()
 	flight_list = []
+	private_flights = False
+
 	for index, row in flights.iterrows():
 		flight, airline, origin, dest, callsign, flightroute = row['Flight'], row['Airline'], row['From'], row['To'], row['Callsign'], ''
 
@@ -47,8 +49,7 @@ def flights_html():
 			url = f'https://flightaware.com/live/flight/{callsign}'
 			flight_list.append({'flight': flight_str, 'url': url, 'route': flightroute})
 		else:
-			flight_list.append({'flight': flight_str + ' (no additional information available)'})
+			flight_list.append({'flight': flight_str + '*'})
+			private_flights = True
 
-	return flight_list
-
-print(flights_html())
+	return flight_list, private_flights

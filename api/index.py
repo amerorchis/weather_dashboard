@@ -29,14 +29,14 @@ def index():
             current_temp, humidity, hum_desc, pressure, press_desc, aqi, aqi_desc, _time = current_future.result()
             low_temp, high_temp = dailies_future.result()
             p1, p2 = graph_future.result()
-            planes = planes_future.result()
+            planes, private_flights = planes_future.result()
 
         script1, div1 = components(p1, theme=theme)
         script2, div2 = components(p2, theme=theme)
 
         return render_template(template_name, current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
                             aqi=aqi, aqi_desc=aqi_desc, pull_time=_time, low_temp=low_temp, high_temp=high_temp, script1=script1, div1=div1,
-                            script2=script2, div2=div2, bokeh_resources=CDN.render(), daily='[Daily]', planes=planes)
+                            script2=script2, div2=div2, bokeh_resources=CDN.render(), daily='[Daily]', planes=planes, private_flights=private_flights)
     except Exception as e:
         return str(e)
 
@@ -56,14 +56,14 @@ def weekly():
             current_temp, humidity, hum_desc, pressure, press_desc, aqi, aqi_desc, _time = current_future.result()
             low_temp, high_temp = dailies_future.result()
             p1, p2 = graph_future.result()
-            planes = planes_future.result()
+            planes, private_flights = planes_future.result()
 
         script1, div1 = components(p1, theme=theme)
         script2, div2 = components(p2, theme=theme)
 
         return render_template(template_name, current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
                             aqi=aqi, aqi_desc=aqi_desc, pull_time=_time, low_temp=low_temp, high_temp=high_temp, script1=script1, div1=div1,
-                            script2=script2, div2=div2, bokeh_resources=CDN.render(), weekly='[Weekly]', planes=planes)
+                            script2=script2, div2=div2, bokeh_resources=CDN.render(), weekly='[Weekly]', planes=planes, private_flights=private_flights)
     except Exception as e:
         return str(e)
     
@@ -83,14 +83,14 @@ def monthly():
             current_temp, humidity, hum_desc, pressure, press_desc, aqi, aqi_desc, _time = current_future.result()
             low_temp, high_temp = dailies_future.result()
             p1, p2 = graph_future.result()
-            planes = planes_future.result()
+            planes, private_flights = planes_future.result()
 
         script1, div1 = components(p1, theme=theme)
         script2, div2 = components(p2, theme=theme)
 
         return render_template(template_name, current_temp=current_temp, humidity=humidity, hum_desc=hum_desc, pressure=pressure, press_desc=press_desc, 
                             aqi=aqi, aqi_desc=aqi_desc, pull_time=_time, low_temp=low_temp, high_temp=high_temp, script1=script1, div1=div1,
-                            script2=script2, div2=div2, bokeh_resources=CDN.render(), monthly="[Monthly]", planes=planes)
+                            script2=script2, div2=div2, bokeh_resources=CDN.render(), monthly="[Monthly]", planes=planes, private_flights=private_flights)
     except Exception as e:
         return str(e)
 
