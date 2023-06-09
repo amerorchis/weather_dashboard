@@ -6,7 +6,7 @@ def describe_pressure(pressure_hpa):
     elif 970 <= pressure_hpa < 990:
         description = "Rain"
     elif 990 <= pressure_hpa < 1010:
-        description = "Change"
+        description = "Changing Weather"
     elif 1010 <= pressure_hpa < 1030:
         description = "Fair"
     elif pressure_hpa >= 1030:
