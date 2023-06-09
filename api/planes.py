@@ -38,14 +38,15 @@ def flights_html():
 			flight_str = f'Flight {flight}'
 
 		if origin:
-			route = f'from {origin}'
+			flightroute = f'from {origin}'
 		
 		if dest:
-			route += f' to {dest}'
+			flightroute += f' to {dest}'
 		
 		if callsign:
 			url = f'https://flightaware.com/live/flight/{callsign}'
-			flight_list.append({'flight': flight_str, 'url': url, 'route':route})
+			flightroute = flightroute if flightroute else ''
+			flight_list.append({'flight': flight_str, 'url': url, 'route':flightroute})
 		else:
 			flight_list.append({'flight': flight_str + ' (no additional information available)'})
 
