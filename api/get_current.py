@@ -1,7 +1,8 @@
 from api.convert import *
 from api.descriptors import *
 from api.query import query
-import datetime
+from datetime import datetime, timedelta
+import pytz
 
 def get_current() -> tuple:
     # Grab last 2 minutes, if no data grab last 24 hours
@@ -21,15 +22,18 @@ def get_current() -> tuple:
     press_desc = describe_pressure(pressure)
     aqi = get_aqi(current['Particulates2_5'].iloc[0])
     aqi_desc = describe_aqi(aqi)
-    _time = recent.strftime('%B %d, %-I:%M %p')
+    _time = recent.strftime('%B %-d, %-I:%M %p')
 
     return (temp_F, humidity, hum_desc, pressure, press_desc, aqi, aqi_desc, _time)
 
 def get_dailies():
-    # Calculate number of seconds elapsed today
-    now = datetime.datetime.now()
-    start_of_day = datetime.datetime(now.year, now.month, now.day)
-    elapsed_seconds = (now - start_of_day).total_seconds()
+    # Find now and start of day in MT
+    mt = pytz.timezone('America/Denver')  # Replace 'YOUR_TIMEZONE' with your desired time zone
+    now_mt = datetime.now(pytz.utc).astimezone(mt)
+    start_of_day = datetime(now_mt.year, now_mt.month, now_mt.day, tzinfo=mt)
+
+    # Calculate the elapsed seconds since the start of the day
+    elapsed_seconds = (now_mt - start_of_day).total_seconds()
 
     # Query records from today based on that
     df = query(f'{elapsed_seconds} seconds')
