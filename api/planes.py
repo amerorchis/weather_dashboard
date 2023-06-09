@@ -30,8 +30,8 @@ def flights_html():
 	flights = flights_query()
 	flight_list = []
 	for index, row in flights.iterrows():
-		flight, airline, origin, dest, callsign = row['Flight'], row['Airline'], row['From'], row['To'], row['Callsign']
-			
+		flight, airline, origin, dest, callsign, flightroute = row['Flight'], row['Airline'], row['From'], row['To'], row['Callsign'], ''
+
 		if airline:
 			flight_str = f'{airline} flight {flight}'
 		else:
@@ -45,9 +45,10 @@ def flights_html():
 		
 		if callsign:
 			url = f'https://flightaware.com/live/flight/{callsign}'
-			flightroute = flightroute if flightroute else ''
-			flight_list.append({'flight': flight_str, 'url': url, 'route':flightroute})
+			flight_list.append({'flight': flight_str, 'url': url, 'route': flightroute})
 		else:
 			flight_list.append({'flight': flight_str + ' (no additional information available)'})
 
 	return flight_list
+
+print(flights_html())
