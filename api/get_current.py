@@ -13,18 +13,22 @@ def get_current() -> tuple:
     # Find most recent reading
     recent = df['local_time'].max()
     current = df.loc[df['local_time'] == recent]
+    
+    if not current.empty:
+        # Retrieve each data point from most recent reading
+        temp_F = str(round(convert_temp(current['Temp'].iloc[0])))
+        humidity = str(round(float(current['Humidity'].iloc[0])))
+        hum_desc = describe_humidity(humidity)
+        pressure = str(round(float(current['Pressure'].iloc[0])))
+        press_desc = describe_pressure(pressure)
+        aqi = get_aqi(current['Particulates2_5'].iloc[0])
+        aqi_desc = describe_aqi(aqi)
+        _time = recent.strftime('%B %-d, %-I:%M %p')
 
-    # Retrieve each data point from most recent reading
-    temp_F = str(round(convert_temp(current['Temp'].iloc[0])))
-    humidity = str(round(float(current['Humidity'].iloc[0])))
-    hum_desc = describe_humidity(humidity)
-    pressure = str(round(float(current['Pressure'].iloc[0])))
-    press_desc = describe_pressure(pressure)
-    aqi = get_aqi(current['Particulates2_5'].iloc[0])
-    aqi_desc = describe_aqi(aqi)
-    _time = recent.strftime('%B %-d, %-I:%M %p')
-
-    return (temp_F, humidity, hum_desc, pressure, press_desc, aqi, aqi_desc, _time)
+        return (temp_F, humidity, hum_desc, pressure, press_desc, aqi, aqi_desc, _time)
+    
+    else:
+        return False, False, False, False, False, False, False, False
 
 def get_dailies():
     # Find now and start of day in MT
@@ -38,9 +42,15 @@ def get_dailies():
     # Query records from today based on that
     df = query(f'{elapsed_seconds} seconds')
 
-    # Identify and convert min and max temps
-    low = df['Temp'].min()
-    high = df['Temp'].max()
-    low_F = str(round(convert_temp(float(low))))
-    high_F = str(round(convert_temp(float(high))))
-    return low_F, high_F
+    if not df.empty:
+
+        # Identify and convert min and max temps
+        low = df['Temp'].min()
+        high = df['Temp'].max()
+        low_F = str(round(convert_temp(float(low))))
+        high_F = str(round(convert_temp(float(high))))
+        return low_F, high_F
+
+    else:
+        return False, False
+    

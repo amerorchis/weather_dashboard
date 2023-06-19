@@ -13,6 +13,7 @@
   <body>
     <div class="container pt-5">
         <h1>West Glacier Dashboard</h1>
+        {% if current_temp and low_temp %}
         <p>Last Data Reading: {{ pull_time }}</p>
         <div id="root">
             <div>
@@ -59,6 +60,10 @@
             </div>
             </div>
         </div>
+        {% else %}
+        No weather data available.
+        {% endif %}
+        {% if div1 and div2 %}
         <div class="container pt-5">
             <div class="selector select-button">
                 <a href="/daily" class="selector-link">{{ daily|default('Daily') }}</a>
@@ -73,6 +78,7 @@
                 {{ div2|safe }}
             </div>
         </div>
+        {% endif %}
         <div class="container pt-5">
             <h2>Planes Overhead</h2>
             <ul>
