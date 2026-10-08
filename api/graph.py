@@ -6,7 +6,7 @@ import pandas as pd
 from api.query import query
 from bokeh.io import curdoc
 from api.convert import *
-from bokeh.models import Label, Circle, HoverTool, ColumnDataSource
+from bokeh.models import Label, Scatter, HoverTool, ColumnDataSource
 from datetime import datetime
 import math
 
@@ -38,7 +38,7 @@ def graph_daily():
 		latest_temperature = float(current['Temp_F'].iloc[0])
 
 		circle_source = ColumnDataSource(data=dict(x=[latest_time], y=[latest_temperature]))
-		dot = Circle(x=latest_time, y=latest_temperature, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
+		dot = Scatter(marker="circle", x=latest_time, y=latest_temperature, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
 		dot_renderer = p.add_glyph(circle_source, dot)
 
 		label = Label(x=latest_time, x_offset=-53, y=latest_temperature, y_offset=26, background_fill_color='#e1e8ed', text=f'Now: {(round(latest_temperature))}°F', 
@@ -66,7 +66,7 @@ def graph_daily():
 		latest_aqi = float(current['AQI'].iloc[0])
 
 		circle_source = ColumnDataSource(data=dict(x=[latest_time], y=[latest_aqi]))
-		dot = Circle(x=latest_time, y=latest_aqi, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
+		dot = Scatter(marker="circle", x=latest_time, y=latest_aqi, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
 		dot_renderer = q.add_glyph(circle_source, dot)
 
 		label = Label(x=latest_time, x_offset=-50, y=latest_aqi, y_offset=20, background_fill_color='#e1e8ed', text=f'Now: {(round(latest_aqi))}', 
@@ -111,7 +111,7 @@ def graph_weekly():
 		latest_temperature = float(current['Temp_F'].iloc[0])
 
 		circle_source = ColumnDataSource(data=dict(x=[latest_time], y=[latest_temperature]))
-		dot = Circle(x=latest_time, y=latest_temperature, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
+		dot = Scatter(marker="circle", x=latest_time, y=latest_temperature, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
 		dot_renderer = p.add_glyph(circle_source, dot)
 
 		label = Label(x=latest_time, x_offset=-53, y=latest_temperature, y_offset=26, background_fill_color='#e1e8ed', text=f'Now: {(round(latest_temperature))}°F', 
@@ -139,7 +139,7 @@ def graph_weekly():
 		latest_aqi = float(current['AQI'].iloc[0])
 
 		circle_source = ColumnDataSource(data=dict(x=[latest_time], y=[latest_aqi]))
-		dot = Circle(x=latest_time, y=latest_aqi, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
+		dot = Scatter(marker="circle", x=latest_time, y=latest_aqi, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
 		dot_renderer = q.add_glyph(circle_source, dot)
 
 		label = Label(x=latest_time, x_offset=-50, y=latest_aqi, y_offset=20, background_fill_color='#e1e8ed', text=f'Now: {(round(latest_aqi))}', 
@@ -184,7 +184,7 @@ def graph_monthly():
 		latest_temperature = float(current['Temp_F'].iloc[0])
 
 		circle_source = ColumnDataSource(data=dict(x=[latest_time], y=[latest_temperature]))
-		dot = Circle(x=latest_time, y=latest_temperature, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
+		dot = Scatter(marker="circle", x=latest_time, y=latest_temperature, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
 		dot_renderer = p.add_glyph(circle_source, dot)
 
 		label = Label(x=latest_time, x_offset=-53, y=latest_temperature, y_offset=26, background_fill_color='#e1e8ed', text=f'Now: {(round(latest_temperature))}°F', 
@@ -212,7 +212,7 @@ def graph_monthly():
 		latest_aqi = float(current['AQI'].iloc[0])
 
 		circle_source = ColumnDataSource(data=dict(x=[latest_time], y=[latest_aqi]))
-		dot = Circle(x=latest_time, y=latest_aqi, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
+		dot = Scatter(marker="circle", x=latest_time, y=latest_aqi, line_color="#050517", size=15, line_width=0, fill_color="#a0d68d")
 		dot_renderer = q.add_glyph(circle_source, dot)
 
 		label = Label(x=latest_time, x_offset=-50, y=latest_aqi, y_offset=20, background_fill_color='#e1e8ed', text=f'Now: {(round(latest_aqi))}', 
